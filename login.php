@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+include 'config.php';
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -95,11 +101,11 @@
         <form action="" method="post">
             <div class="form-group">
                 <label for="" class="form-label">Username</label>
-                <input placeholder="Masukkan username Anda" required type="text" name="" id="" class="form-control">
+                <input placeholder="Masukkan username Anda" required type="text" name="Username" id="" class="form-control">
             </div>
             <div class="form-group mt-4">
                 <label for="" class="form-label">Password</label>
-                <input placeholder="Masukkan password Anda" required type="password" name="" id="" class="form-control">
+                <input placeholder="Masukkan password Anda" required type="password" name="Password" id="" class="form-control">
             </div>
             <div class="form-group mt-4">     
                 <button type="submit" name="submit" class="btn btn-primary">Log In</button>
@@ -117,3 +123,30 @@
       
   </body>
 </html>
+
+<?php
+
+if(isset($_POST['submit'])) {
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
+
+    $query = mysqli_query($koneksi, "SELECT * FROM user WHERE Username = '$username' AND Password = '$password' ")or die(mysqli_error($koneksi));
+
+    $cek = $query->num_rows;
+
+    if($cek == 1){
+        $_SESSION['user'] = $query->fetch_assoc();
+        
+        echo "<script>alert('Berhasil login'); </script>";
+        echo "<script> document.location.href='index.php';</script>";
+    
+    } else {
+
+        echo "<script>alert('Gagal login'); </script>";
+        echo "<script> document.location.href='login.php';</script>";
+    }
+
+}
+
+
+?>

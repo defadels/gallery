@@ -1,3 +1,11 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -78,16 +86,12 @@
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
+          <h4 class="text-white">Menu</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <li><a href="#" class="text-white">Profil</a></li>
+            <li><a href="?halaman=foto" class="text-white">Foto Gallery</a></li>
+            <li><a href="logout.php" class="text-white">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -99,9 +103,22 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         <strong>Album</strong>
       </a>
+      <?php 
+
+        if(isset($_SESSION['user'])){
+
+      ?>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <?php
+        } else {
+      ?>
+
+      <a href="login.php" class="btn btn-secondary">Log In</a>
+
+          <?php } ?>
+
     </div>
   </div>
 </header>
@@ -113,9 +130,34 @@
       if(isset($_GET['halaman'])){
         if($_GET['halaman'] == 'comment'){
             include 'comment.php';
-        } else if($_GET['halaman'] == 'user'){
+        
+          } else if($_GET['halaman'] == 'user'){
             include 'user.php';
-        }
+        
+          } else if($_GET['halaman'] == 'foto'){
+            include 'foto/index.php';
+          
+          } else if($_GET['halaman'] == 'tambahfoto'){
+            include 'foto/tambah.php';
+          
+          } else if($_GET['halaman'] == 'editfoto'){
+            include 'foto/edit.php';
+          
+          } else if($_GET['halaman'] == 'hapusfoto'){
+            include 'foto/hapus.php';
+
+          } else if($_GET['halaman'] == 'album'){
+            include 'album/index.php';
+          
+          } else if($_GET['halaman'] == 'tambahalbum'){
+            include 'album/tambah.php';
+          
+          } else if($_GET['halaman'] == 'editalbum'){
+            include 'album/edit.php';
+          
+          } else if($_GET['halaman'] == 'hapusalbum'){
+            include 'album/hapus.php';
+          }
       }else {
         include 'home.php';
       }

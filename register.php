@@ -1,3 +1,8 @@
+<?php 
+
+    include 'config.php';
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -95,26 +100,26 @@
         <form action="" method="post">
             <div class="form-group">
                 <label for="" class="form-label">Nama Lengkap</label>
-                <input placeholder="Masukkan nama lengkap Anda" required type="text" name="" id="" autocomplete class="form-control">
+                <input placeholder="Masukkan nama lengkap Anda" required type="text" name="NamaLengkap" id="" autocomplete class="form-control">
             </div>
             <div class="form-group mt-4">
                 <label for="" class="form-label">Alamat</label>
-                <textarea name="" id="" placeholder="Masukkan alamat lengkap" autocomplete class="form-control"></textarea>
+                <textarea name="Alamat" id="" placeholder="Masukkan alamat lengkap" autocomplete class="form-control"></textarea>
             </div>
             <div class="form-group mt-4">
                 <label for="" class="form-label">Email</label>
-                <input placeholder="Masukkan email Anda" required type="email" name="" autocomplete id="" class="form-control">
+                <input placeholder="Masukkan email Anda" required type="email" name="Email" autocomplete id="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="" class="form-label">Username</label>
-                <input placeholder="Masukkan username Anda" required type="text" name="" autocomplete id="" class="form-control">
+                <input placeholder="Masukkan username Anda" required type="text" name="Username" autocomplete id="" class="form-control">
             </div>
             <div class="form-group mt-4">
                 <label for="" class="form-label">Password</label>
-                <input placeholder="Masukkan password Anda" required type="password" name="" id="" class="form-control">
+                <input placeholder="Masukkan password Anda" required type="password" name="Password" id="" class="form-control">
             </div>
             <div class="form-group mt-4">     
-                <button type="submit" class="btn btn-primary">Daftar</button>
+                <button type="submit" name="submit" class="btn btn-primary">Daftar</button>
                 <a href="login.php" class="btn btn-link">Sudah Punya Akun</a>
             </div>
         </form>    
@@ -129,3 +134,29 @@
       
   </body>
 </html>
+
+
+<?php
+
+      if(isset($_POST['submit'])) {
+
+        $nama_lengkap = $_POST['NamaLengkap'];
+        $alamat = $_POST['Alamat'];
+        $username = $_POST['Username'];
+        $email = $_POST['Email'];
+        $password = $_POST['Password'];
+
+        $query = mysqli_query($koneksi, "INSERT INTO user(Username, Password, Email, NamaLengkap, Alamat)
+                                        VALUES('$username', '$password', '$email', '$nama_lengkap', '$alamat')")or die(mysqli_error());
+
+        if($query){
+            echo "<script>alert('Berhasil daftar akun'); </script>";
+            echo "<script> document.location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Gagal tambah akun, coba lagi'); </script>";
+            echo "<script> document.location.href='register.php';</script>";
+        }
+    }
+
+
+?>

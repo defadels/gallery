@@ -8,7 +8,12 @@
             <div class="row g-0">
                 <div class="col-md-6 align-self-between overflow-hidden">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="80%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <p>Disukai oleh...</p>
+                
+                <div class="p-4 btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-heart"></i> Like (0)</button>
+                  <button type="button" class="btn btn-link">... lihat lainnya</button>
+                </div>
+                
                 </div>
                 <div class="col-md-6">
                 <div class="card-body">
@@ -21,17 +26,6 @@
                   
 
                     <div class="row overflow-auto p-3" style="max-width: 100%; max-height: 180px;"> 
-
-                     <div class="col-10 mt-4">
-                     <strong>@username</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Harum nam nesciunt sint, nihil asperiores aliquam quod neque modi incidunt perferendis dolores fugiat facere perspiciatis voluptate eligendi aut ex. Iure, eum?
-                     </div>   
-
-                     <div class="col-1 align-self-center">
-                     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn"><i class="bi bi-three-dots"></i></button>
-                     </div>
-                    
-                    <br>
 
                      <div class="col-10 mt-4">
                      <strong>@username</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit.
